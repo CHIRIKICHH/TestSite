@@ -1,28 +1,29 @@
 <?
-  $log = $_POST['login'];
-  $pass = $_POST['pass'];
+  $password = $_POST['pass'];
+  $login = $_POST['login'];
+  // Соединямся с БД
+  $link=mysqli_connect("127.0.0.1", "root", "root", "logbase");
 
-  $dbLogin = 'root';
-  $dbPass = 'root';
-  $dbHost = 'localhost';
-  $db_name = 'logbase';
-  $dblink = mysqli_connect ($dbHost, $dbLogin, $dbPass, $db_name);
-  if(mysqli_num_rows(mysqli_query($dblink,'SELECT `Login` FROM  `users`  WHERE `Login`="'.$log.'"')) > 0){
-    $data = "NUL";
-    exit( json_encode($data) );
-  }
+      // Вытаскиваем из БД запись, у которой логин равняеться введенному
+      $query = mysqli_query($link,"SELECT * FROM users WHERE Login='".mysqli_real_escape_string($link,$login)."' LIMIT 1");
+      $data = mysqli_fetch_assoc($query);
 
-  $sql_query = 'INSERT INTO `users` (`Login`, `Password`, `Reg_Date`) VALUES ("'.$log.'", "'.$pass.'", current_timestamp());';
-  if ($dblink){
-    $answer = mysqli_query($dblink, $sql_query);
-    if (!$answer) {
-      $data = false; //Возвращаемое значение при неудачном добавлении
-    }
-    else {
-      $data = true; //Возвращаемое значение при успешном добавлении
-    }
-  }
-  else{
-    $data = "DBERROR"; // Код для ошибки подключения к БД
-  }
-exit( json_encode($data) );
+  	// Сравниваем логины
+  	if($data['Login'] === $login)
+  	{
+      	// Сравниваем пароли
+  	    if($data['Password'] === $password)
+  	    {
+            $ret = true;
+            exit(json_encode($ret));
+        }
+  	    else
+  	    {
+  	        $ret = 'NUL';
+  	    }
+  	}
+  	else
+  	{
+  		$ret = 'NUL';
+  	}
+    exit(json_encode($ret));

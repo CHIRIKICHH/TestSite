@@ -1,4 +1,4 @@
-function ZP() {
+function ZP(){
   var x = 0;
   $('.inp').each(function(){  //Перебор всех input через метод .each()
     if($(this).val()!= "")    //Условие для проверки заполненности полей input
@@ -6,6 +6,7 @@ function ZP() {
   if (x < 2){
     $('.fsendfalse').html("NOT FULL");
     $('.fsendfalse').css('display','block');
+    $('.fsendfalse').animate({'opacity':'1'}, 100);
   }
   else {
     DBLOG();
@@ -27,13 +28,13 @@ function DBLOG(){
           $('.fdiv *').css('display','none');
           $('.fsend').css('display','block');
         }
-        else if (res == false){ //При неудачной записи в БД
-          $('.fsendfalse').html("ERROR");
-          $('.fsendfalse').css('display','block');
-        }
         else if(res == "NUL"){ //При повторе логина
-          $('.fsendfalse').html("LOGIN");
+          $('.fsendfalse').html("LOGIN OR PASSWORD");
           $('.fsendfalse').css('display','block');
+          $('.fsendfalse').animate({'opacity':'1'}, 100);
+          $('.inp').css({
+            'border-color':'rgb(255, 87, 87)',
+            'color':'rgb(255, 87, 87)'});
         }
         else if(res == "DBERROR"){
           $('.fsendfalse').html("DB CONNECTION ERROR");

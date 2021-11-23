@@ -3,7 +3,7 @@
   height: auto;
   position: relative;
   margin: 0 auto;
-  padding-bottom:20px; 
+  padding-bottom:20px;
   background-color: rgb(46, 48, 73);
   border: 0px solid rgb(255, 87, 87);
   border-radius: 2px;
@@ -50,6 +50,7 @@
   padding-top:5%;
   color: rgb(255, 87, 87);
   font-family: 'Anton', sans-serif;
+  opacity: 0;
   transition: 0.3s;
   display: none;
 }

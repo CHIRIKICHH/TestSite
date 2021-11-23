@@ -13,11 +13,11 @@
 </head>
 <body>
   <div class="fdiv">
-    <div class="fsend">TRUE</div>
-      <form>
+    <div class="fsend">LOGGINED</div>
+      <form action="handler.php" method="post">
         <table>
             <tr>
-              <td>REGISTRATION ON DATBASE</td>
+              <td>LOGIN ON DATBASE</td>
             </tr>
             <tr>
               <td><input class = "inp" value = "" placeholder="LOGIN" name="login" type="text" autocomplete="off" ></td>
@@ -27,7 +27,7 @@
             </tr>
             <tr>
               <td>
-                <div onclick="ZP()" class="sub">REG</div>
+                <div onclick="ZP()" class="sub">LOGIN</div>
               </td>
             </tr>
             <tr>
